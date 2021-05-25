@@ -2,4 +2,4 @@
 Building a user interface programmatically with Auto Layout
 
 # Preview
-![Preview app](https://github.com/mnazirov/GroceryApp/blob/ffcc8906ca096a7939e78f550bf7f1e2f0f91045/Source/preview.gif)
+![Preview app](https://github.com/mnazirov/AuthorizationScreen/blob/2b9955ccce69e95a856128cf8eb49e7a05a3c1d4/Sourses/Preview.png)
