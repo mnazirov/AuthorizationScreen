@@ -144,9 +144,12 @@ class MyViewController : UIViewController {
             mailTextField.heightAnchor.constraint(equalToConstant: 43),
             
             registrationButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            registrationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+            registrationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                                                       constant: -40),
             
             noAccountLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            noAccountLabel.topAnchor.constraint(greaterThanOrEqualTo: logInWithVKButton.bottomAnchor,
+                                                constant: 10),
             noAccountLabel.bottomAnchor.constraint(equalTo: registrationButton.topAnchor)
         ])
     }
