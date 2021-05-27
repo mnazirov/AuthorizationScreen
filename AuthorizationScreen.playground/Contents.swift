@@ -16,20 +16,13 @@ class MyViewController : UIViewController {
     private let logInWithVKButton = UIButton()
     private let registrationButton = UIButton()
     
-    // MARK: - Private properties
-    private let purpleColor = UIColor(red: 137/255,
-                                     green: 4/255,
-                                     blue: 255/255,
-                                     alpha: 1)
-    
+    // MARK: - Other private properties
     private let stackView = UIStackView()
         
     override func loadView() {
         view = UIView()
         view.backgroundColor = .white
-    }
-    
-    override func viewDidLayoutSubviews() {
+        
         configureViews()
         setConstraints()
     }
@@ -57,7 +50,7 @@ class MyViewController : UIViewController {
     
     private func configureLogIn() {
         logInButton.setTitle("Авторизоваться", for: .normal)
-        logInButton.backgroundColor = purpleColor
+        logInButton.backgroundColor = UIColor.Custom.purple
         logInButton.layer.cornerRadius = 5
     }
     
@@ -88,7 +81,7 @@ class MyViewController : UIViewController {
     
     private func configureRegistration() {
         registrationButton.setTitle("Зарегистрироваться", for: .normal)
-        registrationButton.setTitleColor(purpleColor, for: .normal)
+        registrationButton.setTitleColor(UIColor.Custom.purple, for: .normal)
         registrationButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
         view.addSubview(registrationButton)
@@ -155,4 +148,14 @@ class MyViewController : UIViewController {
     }
 }
 
+extension UIColor {
+    enum Custom {
+        static let purple = UIColor(red: 137/255,
+                                    green: 4/255,
+                                    blue: 255/255,
+                                    alpha: 1)
+    }
+}
+
 PlaygroundPage.current.liveView = MyViewController()
+
