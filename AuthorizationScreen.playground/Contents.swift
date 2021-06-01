@@ -16,8 +16,9 @@ class MyViewController : UIViewController {
     private let logInWithVKButton = UIButton()
     private let registrationButton = UIButton()
     
-    // MARK: - Other private properties
     private let stackView = UIStackView()
+    
+    private var scrollView = UIScrollView()
         
     override func loadView() {
         view = UIView()
@@ -32,10 +33,15 @@ class MyViewController : UIViewController {
         mainTitllLabel.text = "Авторизация"
         mainTitllLabel.textAlignment = .center
         mainTitllLabel.font = UIFont.boldSystemFont(ofSize: 30)
-        view.addSubview(mainTitllLabel)
     }
     
     private func configureMailField() {
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.minimumLineHeight = 35
+//        let stringPlaceholder = NSMutableAttributedString(string: "Электронная почта")
+//        stringPlaceholder.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, stringPlaceholder.length))
+//        mailTextField.attributedPlaceholder = stringPlaceholder as NSAttributedString
+        
         mailTextField.placeholder = "Электронная почта"
         mailTextField.borderStyle = .roundedRect
         mailTextField.keyboardType = .emailAddress
@@ -76,15 +82,12 @@ class MyViewController : UIViewController {
                                            green: 210/255,
                                            blue: 210/255,
                                            alpha: 1)
-        view.addSubview(noAccountLabel)
     }
     
     private func configureRegistration() {
         registrationButton.setTitle("Зарегистрироваться", for: .normal)
         registrationButton.setTitleColor(UIColor.Custom.purple, for: .normal)
         registrationButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        
-        view.addSubview(registrationButton)
     }
     
     private func configureStackView() {
@@ -109,6 +112,15 @@ class MyViewController : UIViewController {
         configureLogInWithVK()
         configureNoAccountLabel()
         configureRegistration()
+        configureScrollView()
+    }
+    
+    private func configureScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(mainTitllLabel)
+        scrollView.addSubview(stackView)
+        scrollView.addSubview(noAccountLabel)
+        scrollView.addSubview(registrationButton)
     }
 
     // MARK: - Setting constraints
@@ -121,28 +133,34 @@ class MyViewController : UIViewController {
         logInWithVKButton.translatesAutoresizingMaskIntoConstraints = false
         noAccountLabel.translatesAutoresizingMaskIntoConstraints = false
         registrationButton.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            mainTitllLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            mainTitllLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             mainTitllLabel.bottomAnchor.constraint(equalTo: stackView.topAnchor,
                                                    constant: -20),
-            
-            stackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                                constant: -20),
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+
+            stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            stackView.leadingAnchor.constraint(greaterThanOrEqualTo: scrollView.leadingAnchor,
                                                constant: 20),
+            stackView.trailingAnchor.constraint(lessThanOrEqualTo: scrollView.trailingAnchor,
+                                                constant: -20),
+            stackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 400),
+
+            logInButton.heightAnchor.constraint(equalToConstant: 50),
             
-            mailTextField.heightAnchor.constraint(equalToConstant: 43),
-            
-            registrationButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            registrationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                                       constant: -40),
-            
-            noAccountLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            registrationButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            registrationButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+
+            noAccountLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             noAccountLabel.topAnchor.constraint(greaterThanOrEqualTo: logInWithVKButton.bottomAnchor,
-                                                constant: 10),
+                                                constant: 40),
             noAccountLabel.bottomAnchor.constraint(equalTo: registrationButton.topAnchor)
         ])
     }
