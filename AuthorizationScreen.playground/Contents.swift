@@ -36,11 +36,9 @@ class MyViewController : UIViewController {
     }
     
     private func configureMailField() {
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.minimumLineHeight = 35
-//        let stringPlaceholder = NSMutableAttributedString(string: "Электронная почта")
-//        stringPlaceholder.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, stringPlaceholder.length))
-//        mailTextField.attributedPlaceholder = stringPlaceholder as NSAttributedString
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.minimumLineHeight = 35
+        mailTextField.defaultTextAttributes = [.paragraphStyle: paragraphStyle]
         
         mailTextField.placeholder = "Электронная почта"
         mailTextField.borderStyle = .roundedRect
@@ -152,8 +150,6 @@ class MyViewController : UIViewController {
             stackView.trailingAnchor.constraint(lessThanOrEqualTo: scrollView.trailingAnchor,
                                                 constant: -20),
             stackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 400),
-
-            logInButton.heightAnchor.constraint(equalToConstant: 50),
             
             registrationButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             registrationButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
